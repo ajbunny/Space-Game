@@ -1,6 +1,6 @@
 let alienArr = [] //alien array
 
-//CLASS SHIP is blue print for sub classes HUmanSHip & Alien Ship
+//CLASS SHIP is blue print for sub classes HumanShip & Alien Ship
 class Ship {
     constructor(hull, firepower, accuracy) {
         this.hull = hull;
@@ -8,8 +8,7 @@ class Ship {
         this.accuracy = accuracy;
     }
 }
-//#region HUMAN CLASS
-//Extends is the method that connects the sub-classes to parent ship
+//#region HUMAN CLASS //Extends is the method that connects the sub-classes to parent ship
 class HumanShip extends Ship {
     constructor(hull, firepower, accuracy) {
        super(hull, firepower, accuracy)
@@ -21,7 +20,7 @@ class HumanShip extends Ship {
                 console.log(`This humanship attacked the alien ship they have ${meanAlien.hull} left`)
             }
             }
-            else{
+            else {
                 console.log('Earthship attack missed!')
             }
            
@@ -30,7 +29,7 @@ class HumanShip extends Ship {
 
         else {
             for (let i = 0; i < alienArr.length; i++) {
-                if (alienArr[i].hull < 3) {
+                if (alienArr[i].hull < 0) {
                    console.log("Continue attack or Retreat") 
                 }
                     
@@ -48,17 +47,20 @@ class HumanShip extends Ship {
 class AlienShip extends Ship {
     constructor(hull, firepower, accuracy) {
       super(hull, firepower, accuracy)
-
+        this.hull = hull //between 3-6
+        this.firepower = firepower// between 2-4
+        this.accuracy = accuracy //between .6-.8
     }
     attack(niceHuman) {
-        if (this.hull < 0) {
-           if( Math.random() < this.accuracy) 
-                if (BunnyShip.hull -= this.firepower){
-
-                }
+        if (this.hull > 0) {
+           if( Math.random() > this.accuracy) 
+             BunnyShip.hull = BunnyShip.hull -= this.firepower
+               console.log(`The enemy ship atttacked the humanship. The earth ship has this ${BunnyShip.hull} much left!`)  
+                      
+               
         }
         else{
-            console.log(`The enemy ship atttacked the humanship. Th earth ship has this ${BunnyShip.hull} much left!`)
+            console.log("You hit the Human Ship!")     
         }
              
                 
@@ -83,13 +85,11 @@ let randomNumMaker2 = (a, b) => {
 
 
  let randomNumMaker3 = (a,b) => {
-    let c = Math.floor(Math.random() * 3) + 6 / 10;
+    let c = (Math.floor(Math.random() * 3) + 6) / 10;
     return c
  }
 
-//#endregion
 
-//#region Alien Ships
 //called functions in new ship class
 
 const newAlienShip1 = new AlienShip(randomNumMaker(), randomNumMaker2(), randomNumMaker3());
@@ -106,11 +106,10 @@ alienArr.push(newAlienShip1, newAlienShip2, newAlienShip3, newAlienShip4, newAli
 
 
 
-// #region Create battle btwn Bunny's ship and alien ship using booleans
+//#region  Create battle btwn Bunny's ship and alien ship using booleans
 const battleRound = (aliens, earthShip) => {
-    if (earthShip) {
-        earthShip.attack(aliens[0])
-      
+    if (earthShip.hull > 0 && aliens.hull(aliens[0]) > 0) {
+        earthShip.attack(aliens)
     }
     if (aliens[0].hull > 0){
         aliens[0].attack(earthShip)
@@ -120,3 +119,28 @@ const battleRound = (aliens, earthShip) => {
     }
 }
 battleRound(alienArr,BunnyShip);
+
+//#endregion
+
+//#region GAME OBJECT ///////
+startBattle() {
+    while((this.checkPlayerHP()) && (this.checkAlienHP())){
+        USS_Terminator.attack(alienFleet[0]) && alienFleet[0].attack(USS_Terminator)
+        console.log("USS_Terminator locks on to ALien Ship")
+        this.humanShip.attack(this.enemyShips[0])
+        console.log(`Alien has ${this.enemyShips[0].hull} left`)
+        console.log("Alien takes aim at USS_Terminator")
+        this.enemyShips[0].attack(this.humanShip)
+        console.log(`USS_Terminator has ${this.humanShip.hull} left`)
+    }
+    if(this.checkAlienHP() == false){
+        console.log("USS_Terminator has defeated an alien ship")
+    }else if(this.checkPlayerHP() == false){
+        console.log("Aliens have destroyed the USS_Terminator")
+    }
+}
+
+
+
+//#endregion
+
