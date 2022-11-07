@@ -108,37 +108,70 @@ alienArr.push(newAlienShip1, newAlienShip2, newAlienShip3, newAlienShip4, newAli
 
 //#region  Create battle btwn Bunny's ship and alien ship using booleans
 const battleRound = (aliens, earthShip) => {
-    if (earthShip.hull > 0 && aliens.hull(aliens[0]) > 0) {
+    // let winnerOfRound;
+   
+    if (earthShip.hull > 0 && aliens[0].hull > 0) {
+        console.log('Attack the Aliens!!')
         earthShip.attack(aliens)
+        
     }
-    if (aliens[0].hull > 0){
+    if (aliens[0].hull > 0 && earthShip.hull > 0){
+        console.log("Oh no, They're targeting BunnyShip")
         aliens[0].attack(earthShip)
       }
-    if (earthShip.hull > 0){
+    if (earthShip.hull > 0 && aliens[0].hull < 1 ) {
+        console.log('We are defeating the Aliens!')
         earthShip.attack(aliens[0])
     }
+    else {
+        console.log("You Lose. Game Over.")
+    }
+  
 }
 battleRound(alienArr,BunnyShip);
 
 //#endregion
 
 //#region GAME OBJECT ///////
-startBattle() {
-    while((this.checkPlayerHP()) && (this.checkAlienHP())){
-        USS_Terminator.attack(alienFleet[0]) && alienFleet[0].attack(USS_Terminator)
-        console.log("USS_Terminator locks on to ALien Ship")
-        this.humanShip.attack(this.enemyShips[0])
-        console.log(`Alien has ${this.enemyShips[0].hull} left`)
-        console.log("Alien takes aim at USS_Terminator")
-        this.enemyShips[0].attack(this.humanShip)
-        console.log(`USS_Terminator has ${this.humanShip.hull} left`)
-    }
-    if(this.checkAlienHP() == false){
-        console.log("USS_Terminator has defeated an alien ship")
-    }else if(this.checkPlayerHP() == false){
-        console.log("Aliens have destroyed the USS_Terminator")
-    }
+let game = {
+    checkEarthWon = () =>      //checks life status of alien ife
+        {if(meanAlien.hull < 1) {
+            console.log('Aliens have been destroyed!!');
+        }
+        },
+
+    checkAlienWon: function () {  //checks status of Bunny's life
+        if(BunnyShip.hull < 1) {
+            return true
+        }    
+   },
+
+   checkALienHealth: function () { // alien's hull left
+    return alienArr[0].hull
+   },
+
+   checkBunnyHealth: function () { // Bunny's hull left
+    return BunnyShip.hull
+   }
+
 }
+
+// startBattle() {
+//     while((this.checkPlayerHP()) && (this.checkAlienHP())){
+//         USS_Terminator.attack(alienFleet[0]) && alienFleet[0].attack(USS_Terminator)
+//         console.log("USS_Terminator locks on to ALien Ship")
+//         this.humanShip.attack(this.enemyShips[0])
+//         console.log(`Alien has ${this.enemyShips[0].hull} left`)
+//         console.log("Alien takes aim at USS_Terminator")
+//         this.enemyShips[0].attack(this.humanShip)
+//         console.log(`USS_Terminator has ${this.humanShip.hull} left`)
+//     }
+//     if(this.checkAlienHP() == false){
+//         console.log("USS_Terminator has defeated an alien ship")
+//     }else if(this.checkPlayerHP() == false){
+//         console.log("Aliens have destroyed the USS_Terminator")
+//     }
+// }
 
 
 
