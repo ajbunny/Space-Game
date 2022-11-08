@@ -141,7 +141,7 @@ alienArr.push(
   newAlienShip5,
   newAlienShip6
 );
-// alienArr.pop();
+
 
 //#region  Create battle btwn Bunny's ship and alien ship using booleans
 const battleRound = (aliens, earthShip) => {
@@ -217,7 +217,7 @@ makeAliens() {
     return alienArr
 }
 };
-// console.log(game);
+console.log(game);
 
 //#endregion
 
