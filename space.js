@@ -1,9 +1,4 @@
 let alienArr = []; //alien array
-// const button = document.getElementById("btn");
-
-// button.addEventListener("click", function (e) {
-//   console.log(game.welcome);
-// });
 
 //CLASS SHIP is blue print for sub classes HumanShip & Alien Ship
 class Ship {
@@ -136,18 +131,13 @@ alienArr.push(
   newAlienShip6
 );
 
-// for (let i = 0; i < alienArr.length; i++){ just added pop to array
-//  return alienArr.pop
-// }
-
 //#region  Create battle btwn Bunny's ship and alien ship using booleans
 welcome();
 
-  for (let i = 0; i < alienArr.length; i++) {
+for (let i = 0; i < alienArr.length; i++) {
   const battleRound = (aliens, earthShip) => {
-
     let winnerOfRound = true;
-    let response = this.response;
+    let response = this.RunOrFight;
     while (winnerOfRound) {
       if (earthShip.hull > 0 && aliens[0].hull >= 1) {
         console.log("Attack the Aliens!!");
@@ -161,19 +151,16 @@ welcome();
         console.log("We are defeating the Aliens!");
         winnerOfRound = false;
         console.log("YOU SAVED THE PLANET");
-        return response
-        
+        return response;
       } else {
         console.log("You Lose. Game Over.");
         winnerOfRound = true;
       }
       return winnerOfRound;
     }
-  
-};
+  };
   battleRound(alienArr, BunnyShip);
 }
-
 
 //#endregion
 
@@ -194,25 +181,22 @@ let game = {
   },
 
   RunOrFight: function () {
-    
-    const response = prompt(`Game over! Thanks for playing, please click OK`
-    );
+    const response = prompt(`Game over! Thanks for playing, please click OK`);
     if (response.toLowerCase() === "X") {
-      console.log( "You have did not complete your mission! Retreat and regroup!");
-  
+      console.log(
+        "You have did not complete your mission! Retreat and regroup!"
+      );
     } else if (response.toLowerCase() === "C") {
       return battleRound();
     }
-
-  
+    
   },
-
-
+  
 };
 
+
 game.RunOrFight();
-
-
 console.log(game);
 
 //#endregion
+
