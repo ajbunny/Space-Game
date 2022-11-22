@@ -1,11 +1,9 @@
 let alienArr = []; //alien array
-const button = document.getElementById('btn');
+// const button = document.getElementById("btn");
 
-button.addEventListener('click', function(e){
-  // let newGame = game()
-  console.log(game.welcome)
-})
-
+// button.addEventListener("click", function (e) {
+//   console.log(game.welcome);
+// });
 
 //CLASS SHIP is blue print for sub classes HumanShip & Alien Ship
 class Ship {
@@ -28,7 +26,7 @@ class HumanShip extends Ship {
         `BunnyShip attacked the Alien ship and they have ${alienArr[0].hull} hull left`
       );
     } else {
-      console.log("We missed! Load the next missile!")
+      console.log("We missed! Load the next missile!");
     }
     return meanAlien.hull;
   }
@@ -138,117 +136,83 @@ alienArr.push(
   newAlienShip6
 );
 
-
-
 // for (let i = 0; i < alienArr.length; i++){ just added pop to array
 //  return alienArr.pop
 // }
 
 //#region  Create battle btwn Bunny's ship and alien ship using booleans
-for (let i = 0; i < alienArr.length; i++) { 
-const battleRound = (aliens, earthShip) => {
-  let winnerOfRound = true;
-  let response = this.RunOrFight
-  while (winnerOfRound) {
-    
-    if (earthShip.hull > 0 && aliens[0].hull >= 1) {
-      console.log("Attack the Aliens!!");
-      earthShip.attack(aliens[0]);
-    }
-    if (aliens[0].hull > 0 && earthShip.hull > 0) {
-      console.log("Oh no, They're targeting BunnyShip");
-      aliens[0].attack(earthShip);
-     
-    }
-    if (earthShip.hull > 0 && aliens[0].hull <= 0) {
-      console.log("We are defeating the Aliens!");
-      winnerOfRound = false;
-      console.log(response); 
-      console.log("YOU SAVED THE PLANET");
-      
-    } else {
-       console.log("You Lose. Game Over.");
-      winnerOfRound = true;
-    }
-    return winnerOfRound;
-  }
-};
+welcome();
 
-battleRound(alienArr, BunnyShip);
+  for (let i = 0; i < alienArr.length; i++) {
+  const battleRound = (aliens, earthShip) => {
+
+    let winnerOfRound = true;
+    let response = this.response;
+    while (winnerOfRound) {
+      if (earthShip.hull > 0 && aliens[0].hull >= 1) {
+        console.log("Attack the Aliens!!");
+        earthShip.attack(aliens[0]);
+      }
+      if (aliens[0].hull > 0 && earthShip.hull > 0) {
+        console.log("Oh no, They're targeting BunnyShip");
+        aliens[0].attack(earthShip);
+      }
+      if (earthShip.hull > 0 && aliens[0].hull <= 0) {
+        console.log("We are defeating the Aliens!");
+        winnerOfRound = false;
+        console.log("YOU SAVED THE PLANET");
+        return response
+        
+      } else {
+        console.log("You Lose. Game Over.");
+        winnerOfRound = true;
+      }
+      return winnerOfRound;
+    }
+  
+};
+  battleRound(alienArr, BunnyShip);
 }
+
+
 //#endregion
 
 //
 
 // #region GAME OBJECT ///////
-
+function welcome() {
+  console.log(
+    "Earth is being invaded by mean aliens who are here to rule Earth. Much like the 1%ers... Help us defeat them and sending them packing"
+  );
+}
 
 let game = {
+  retreat: function () {
+    console.log(
+      "We must retreat and regroup! We lost the battle, not the war!!🚀"
+    );
+  },
 
-    welcome: function () {
-      console.log("Earth is being invaded by mean aliens who are here to rule Earth. Much like the 1%ers.")
-},
-    retreat: function () {
-      console.log("We must retreat and regroup! We lost the battle, not the war!!🚀")
-    },
-
-    RunOrFight: function () {
-        const response = prompt(`Press 'C' to keep fighting aliens or 'X' to retreat`)
-        if (response.toLowerCase() === 'X'){
-
-              alert('You have did not complete your mission! Retreat and regroup!')
-        } else if (response.toLowerCase() === 'C') {
-          null
-        } else {
-          alert('Try again')
-          
-        }
-       
-       return winnerOfRound
-    },
+  RunOrFight: function () {
+    
+    const response = prompt(`Game over! Thanks for playing, please click OK`
+    );
+    if (response.toLowerCase() === "X") {
+      console.log( "You have did not complete your mission! Retreat and regroup!");
+  
+    } else if (response.toLowerCase() === "C") {
+      return battleRound();
+    }
 
   
-  checkEarthWon: () => {
-        if (aliens[0].hull < 1) {
-            console.log("Aliens have been destroyed!!");
-        }
-    },
-
-  checkAlienWon: () => {
-      if (BunnyShip.hull < 1) {
-
-      }
-      console.log("You Lost, Game Over!");
-  },
-  checkALienHealth: ()  =>
-  // alien's hull left
-   {return alienArr[0].hull;
   },
 
-  checkBunnyHealth:() =>   // Bunny's hull left
-    {
-    return BunnyShip.hull;
-  },
 
-  pickTarget() { //function to return last index in alien array
-    return this.alienArr[this.alienArr.length - 1]
-},
-
-makeAliens() {
-    let alienArr = []
-    for (let i = 6; i > 0; i--) {
-        alienArr.push(new AlienShip(`Alien Ship #${i}`))
-        alienArr.pop();
-        
-    }
-    return alienArr
-}
 };
-// game.welcome();
-game.RunOrFight();
-game.checkAlienWon();
-game.checkEarthWon();
-console.log(game);
 
+game.RunOrFight();
+
+
+console.log(game);
 
 //#endregion
